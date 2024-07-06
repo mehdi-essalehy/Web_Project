@@ -1,2 +1,2 @@
-cd C:\Program Files\PostgreSQL\16\bin
-psql -U postgres -d TEST -f "C:\Users\NB\Downloads\Master S2\Web Project\db.sql"
+cd C:\Program Files\PostgreSQL\[version]\bin
+psql -U [username] -d [dbname] -f [filepath]
