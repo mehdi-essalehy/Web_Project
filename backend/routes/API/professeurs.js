@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {getMyProfData, updateMyProfData, getMyProfClasses, getStudentsFromClass, setGrade} = require('../../controllers/professeurController');
+const {getMyProfData, updateMyProfData, getMyProfClasses, getStudentsFromClass, setGrade, getStudentFromClass} = require('../../controllers/professeurController');
 const ROLES_LIST = require('../../config/roles_list');
 const verifyRoles = require('../../middleware/verifyRoles');
 
@@ -15,4 +15,6 @@ router.route('/myClasses/:id')
     .get(verifyRoles(ROLES_LIST.Prof), getStudentsFromClass) // get students enrolled in class
     .put(verifyRoles(ROLES_LIST.Prof), setGrade) // set grade and set remark for a student
 
+router.route('/myStudent/:class_id/:student_id')
+    .get(verifyRoles(ROLES_LIST.Prof), getStudentFromClass)
 module.exports = router;

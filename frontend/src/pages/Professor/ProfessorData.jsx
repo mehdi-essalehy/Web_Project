@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom'
 
 function ProfessorData() {
-    const [data, setData] = useState(null);
+    const [data, setData] = useState({});
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetch('http://localhost:3500/professeurs/myData', {
@@ -18,13 +21,31 @@ function ProfessorData() {
         .catch((error) => console.log(error));
     }, [])
 
+    const {ID, Prenom, Nom}  = data;
+
+    const onReturn = (e) => {
+        e.preventDefault();
+
+        navigate(-1)
+    }
+    
     return (
-        <>
-            <h1>This is the Professor profile page</h1>
-            <p>ID: {data.ID}</p><br />
-            <p>Prenom: {data.Prenom}</p><br />
-            <p>Nom: {data.Nom}</p><br />
-        </>
+        <div class="profile-container">
+            <div class="profile-header">Profil de professeur</div>
+            <div class="profile-field">
+                <label for="prof-id">Professeur ID:</label>
+                <div id="prof-id">{ID}</div>
+            </div>
+            <div class="profile-field">
+                <label for="first-name">Prénom:</label>
+                <div id="first-name">{Prenom}</div>
+            </div>
+            <div class="profile-field">
+                <label for="last-name">Nom:</label>
+                <div id="last-name">{Nom}</div>
+            </div>
+            <button onClick={onReturn}>Retourner</button>
+        </div>
     )
 }
 

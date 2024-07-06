@@ -27,10 +27,28 @@ const getStudentsFromClass = async (req, res) => {
     const user_id = req.user_id;
     const class_id = req.params.id;
 
-    const class_prof = professeurs.getProfFromClass(class_id);
+    const class_prof = await professeurs.getProfFromClass(class_id);
     if (class_prof === user_id) {
         const data = await professeurs.getStudentsFromClass(class_id);
         res.json({data: data});
+    } else {
+        return res.sendStatus(401);
+    }
+}
+
+const getStudentFromClass = async (req, res) => {
+    const user_id = req.user_id;
+    const class_id = req.params.class_id
+    const student_id = req.params.student_id
+
+    const class_prof = await professeurs.getProfFromClass(class_id);
+    if (class_prof === user_id) {
+        if (professeurs.studentInClass(student_id, class_id)) {
+            const data = await professeurs.getStudentFromClass(student_id, class_id);
+            res.json({data: data})
+        } else {
+            return res.sendStatus(401);
+        }
     } else {
         return res.sendStatus(401);
     }
@@ -43,9 +61,13 @@ const setGrade = async (req, res) => {
     const note = req.body.note;
     const remarque = req.body.remarque;
 
-    const class_prof = professeurs.getProfFromClass(class_id);
+    if (!note || note > 20 || note < 0) {
+        return res.sendStatus(400);
+    }
+
+    const class_prof = await professeurs.getProfFromClass(class_id);
     if (class_prof === user_id) {
-        if (professeurs.studentInClass(etudiant_id, class_id)) {
+        if (await professeurs.studentInClass(etudiant_id, class_id)) {
             const response = await professeurs.setGrade(etudiant_id, class_id, note, remarque);
             res.json({response: response});
         } else {
@@ -56,4 +78,4 @@ const setGrade = async (req, res) => {
     }
 }
 
-module.exports = {getMyProfData, updateMyProfData, getMyProfClasses, getStudentsFromClass, setGrade}
+module.exports = {getMyProfData, updateMyProfData, getMyProfClasses, getStudentsFromClass, setGrade, getStudentFromClass}

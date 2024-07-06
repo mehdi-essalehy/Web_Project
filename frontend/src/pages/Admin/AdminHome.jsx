@@ -1,19 +1,28 @@
-import { Link } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 function AdminHome() {
+
+    const navigate = useNavigate();
+
     return (
         <>
-            <h1>This is the Admin home page</h1>
+            <h1>Page d'accueil</h1>
             <nav>
                 <ul>
                     <li>
-                        <Link to='/createNewProfessor'>Create Professor</Link>
+                        <Link to='/admin/createProf'>Créer un Compte Professeur</Link>
                     </li>
                     <li>
-                        <Link to='/createNewStudent'>Create Student</Link>
+                        <Link to='/admin/createStudent'>Créer un Compte Etudiant</Link>
                     </li>
                     <li>
-                        <Link to='/createNewAdmin'>Create Admin</Link>
+                        <Link to='/admin/createAdmin'>Créer un Compte Administrateur</Link>
+                    </li>
+                    <li>
+                        <Link to='/admin/createClass'>Créer une Classe</Link>
+                    </li>
+                    <li>
+                        <Link to='/admin/AddStudentToClass'>Ajouter un Etudiant à une Classe</Link>
                     </li>
                 </ul>
             </nav>

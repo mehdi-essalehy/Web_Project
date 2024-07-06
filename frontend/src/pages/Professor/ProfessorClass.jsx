@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom'
 
-function ProfessorClasses() {
+function ProfessorClass() {
 
-    const [data, setData] = useState({data: []})
+    const navigate = useNavigate()
 
-    const navigate = useNavigate();
+    const { classID } = useParams()
+
+    const [data, setData] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:3500/professeurs/myClasses', {
+        fetch('http://localhost:3500/professeurs/myClasses/' + classID, {
             method: 'GET',
             headers: {
               'content-type': 'application/json',
@@ -26,11 +28,14 @@ function ProfessorClasses() {
         var res = []
         for (let i = 0; i < data.length; i++) {
             let row = data[i]
-            let path = '/professor/class/' + row.ClasseID;
-            res.push(<tr><td><Link to={path}>{row.ClasseID}</Link></td><td>{row.Matiere}</td><td>{row.Annee}</td></tr>)
+            let studentID = row.ID
+            let path = '/professor/updateClass/' + classID + '/' + studentID;
+            res.push(<tr><td><Link to={path}>{row.Prenom}</Link></td><td><Link to={path}>{row.Nom}</Link></td><td>{row.Note}</td></tr>) //<td>{row.Remarque_du_prof}</td>
         }
         return res;
     }
+
+    const tableStyle = {margin: '0px auto'}
 
     const onReturn = (e) => {
         e.preventDefault();
@@ -38,16 +43,15 @@ function ProfessorClasses() {
         navigate(-1)
     }
 
-
     return (
         <>
-            <h2><b>Mes Classes</b></h2>
-            <table border={1}>
+            <table border={1} style={tableStyle}>
                 <thead>
                     <tr>
-                        <th>Classe ID</th>
-                        <th>Nom de la Matiere</th>
-                        <th>Annee </th>
+                        <th>Prenom</th>
+                        <th>Nom</th>
+                        <th>Note</th>
+                        {/* <th>Remarque du Prof</th> */}
                     </tr>
                 </thead>
                 <tbody>
@@ -56,9 +60,10 @@ function ProfessorClasses() {
                     }
                 </tbody>
             </table>
+            <br/>
             <button onClick={onReturn}>Retourner</button>
         </>
     )
 }
 
-export default ProfessorClasses
+export default ProfessorClass

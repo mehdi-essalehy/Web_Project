@@ -86,34 +86,6 @@ h3 {
   color: #828282;
 }
 
-.goals {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-}
-
-.goal {
-  background-color: #f4f4f4;
-  margin: 10px 0;
-  padding: 20px 0 10px;
-  position: relative;
-}
-
-.goal .close {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  cursor: pointer;
-  border: none;
-  background: none;
-}
-
-.form,
-.content {
-  width: 70%;
-  margin: 0 auto;
-}
-
 .form-group {
   margin-bottom: 10px;
 }
@@ -145,24 +117,6 @@ h3 {
   padding-bottom: 0.1em;
 }
 
-
-
-.btn {
-  padding: 10px 20px;
-  border: 1px solid #000;
-  border-radius: 5px;
-  background: #000;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 700;
-  cursor: pointer;
-  text-align: center;
-  appearance: button;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .btn svg {
   margin-right: 8px;
 }
@@ -181,47 +135,287 @@ h3 {
   transform: scale(0.98);
 }
 
-.loadingSpinnerContainer {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 5000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  margin: 20px 0;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #333;
 }
 
-.loadingSpinner {
-  width: 64px;
-  height: 64px;
-  border: 8px solid;
-  border-color: #000 transparent #555 transparent;
-  border-radius: 50%;
-  animation: spin 1.2s linear infinite;
+thead th {
+  background-color: #333;
+  color: #ffffff;
+  text-align: left;
+  padding: 12px 15px;
+  border-bottom: 2px solid #333;
+  font-weight: bold;
+  text-align: center;
 }
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
 }
 
-@media (max-width: 600px) {
-  .form {
-    width: 90%;
-  }
+tbody td {
+  padding: 10px 15px;
+  border-bottom: 1px solid #ddd;
+}
 
-  .heading h1 {
-    font-size: 2rem;
-  }
+tbody tr:hover {
+  background-color: #e0e0e0;
+}
 
-  .heading p {
-    font-size: 1.5rem;
-  }
+tfoot td {
+  background-color: #f9f9f9;
+  padding: 10px 15px;
+  border-top: 2px solid #333;
+  font-weight: bold;
+}
+
+form {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  background-color: #ffffff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #333;
+}
+
+fieldset {
+  border: none;
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.info-field {
+  background-color: #f9f9f9;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  margin-bottom: 15px;
+}
+
+input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  margin-bottom: 15px;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  margin-bottom: 15px;
+}
+
+button {
+  background-color: #333;
+  color: #ffffff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+button:hover {
+  background-color: #444;
+}
+
+input[type="number"]:focus,
+textarea:focus {
+  border-color: #0044cc;
+  outline: none;
+}
+
+.login-container {
+  background-color: #ffffff;
+  padding: 30px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+fieldset {
+  border: none;
+  margin-bottom: 20px;
+}
+
+legend {
+  font-size: 25px;
+  font-weight: bold;
+  color: #101010;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  text-align: left;
+}
+
+input[type="number"],
+input[type="password"],
+input[type="text"],
+input[type="date"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.radio-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.radio-group label {
+  display: inline-block;
+  margin-right: 10px;
+  font-weight: normal;
+}
+
+input[type="radio"] {
+  margin-right: 5px;
+  height:15px;
+  width:15px;
+  vertical-align: middle;
+}
+
+input[type="submit"] {
+  background-color: #0044cc;
+  color: #ffffff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+input[type="submit"]:hover {
+  background-color: #003399;
+}
+
+input[type="number"]:focus,
+input[type="password"]:focus,
+input[type="text"]:focus,
+input[type="date"]:focus {
+  border-color: #0044cc;
+  outline: none;
+}
+
+input[type="number"]:hover,
+input[type="password"]:hover,
+input[type="text"]:hover,
+input[type="date"]:hover {
+  border-color: #0044cc;
+  outline: none;
+}
+
+.profile-container {
+  background-color: #ffffff;
+  padding: 30px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  margin: 0px auto;
+}
+
+.profile-header {
+  font-size: 25px;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 20px;
+}
+
+.profile-field {
+  margin-bottom: 15px;
+}
+
+.profile-field label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+.profile-field div {
+  background-color: #f9f9f9;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  text-align: left;
+}
+
+.form-container {
+  background-color: #ffffff;
+  padding: 30px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+fieldset {
+  border: none;
+  margin-bottom: 20px;
+}
+
+legend {
+  font-size: 20px;
+  font-weight: bold;
+  color: #101010;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  text-align: left;
+}
+
+select,
+input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+select:focus,
+input[type="number"]:focus {
+  border-color: #0044cc;
+  outline: none;
 }

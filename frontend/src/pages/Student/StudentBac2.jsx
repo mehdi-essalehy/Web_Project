@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 
-function ProfessorClasses() {
+function Bac2() {
 
-    const [data, setData] = useState({data: []})
+    const [data, setData] = useState([]);
+    const [finalGrade, setFinalGrade] = useState(0)
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch('http://localhost:3500/professeurs/myClasses', {
+        fetch('http://localhost:3500/etudiants/Bac-2', {
             method: 'GET',
             headers: {
               'content-type': 'application/json',
@@ -20,14 +21,27 @@ function ProfessorClasses() {
             setData(data.data);
         })
         .catch((error) => console.log(error));
+
+        fetch('http://localhost:3500/etudiants/getEtudGrade3', {
+            method: 'GET',
+            headers: {
+              'content-type': 'application/json',
+              'Authorization': 'Bearer ' + localStorage.getItem('jwt-token'),
+            },
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            setFinalGrade(data.data[0].Note_Finale);
+        })
+        .catch((error) => console.log(error));
     }, [])
 
     function show({data}) {
         var res = []
         for (let i = 0; i < data.length; i++) {
             let row = data[i]
-            let path = '/professor/class/' + row.ClasseID;
-            res.push(<tr><td><Link to={path}>{row.ClasseID}</Link></td><td>{row.Matiere}</td><td>{row.Annee}</td></tr>)
+            let path = '/student/updateClass/' + row.ClasseID;
+            res.push(<tr><td><Link to={path}>{row.ClasseID}</Link></td><td>{row.Matiere}</td>{/*<td>{row.Annee}</td>*/}<td>{row.Note}</td></tr>)
         }
         return res;
     }
@@ -41,13 +55,14 @@ function ProfessorClasses() {
 
     return (
         <>
-            <h2><b>Mes Classes</b></h2>
+            <h2><b>Mes Classes de Bac 2</b></h2>
             <table border={1}>
                 <thead>
                     <tr>
                         <th>Classe ID</th>
                         <th>Nom de la Matiere</th>
-                        <th>Annee </th>
+                        {/* <th>Annee </th> */}
+                        <th>Note</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -55,10 +70,16 @@ function ProfessorClasses() {
                         show({data: data})
                     }
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td colSpan={2}>Note Finale:</td>
+                        <td>{finalGrade}</td>
+                    </tr>
+                </tfoot>
             </table>
             <button onClick={onReturn}>Retourner</button>
         </>
     )
 }
 
-export default ProfessorClasses
+export default Bac2

@@ -65,7 +65,7 @@ const getStudentsFromClass = async (class_id) => {
     const client = await pool.connect();
 
     try {
-        const query = `SELECT "Etudiant"."Prenom", "Etudiant"."Nom", "Etudiant_Classe"."Note"  FROM public."Etudiant" INNER JOIN public."Etudiant_Classe" ON "Etudiant"."ID" = "Etudiant_Classe"."Etudiant_ID" WHERE "Etudiant_Classe"."Classe_ID" = ${class_id}`;
+        const query = `SELECT "Etudiant"."ID", "Etudiant"."Prenom", "Etudiant"."Nom", "Etudiant_Classe"."Note", "Etudiant_Classe"."Remarque_du_prof"  FROM public."Etudiant" INNER JOIN public."Etudiant_Classe" ON "Etudiant"."ID" = "Etudiant_Classe"."Etudiant_ID" WHERE "Etudiant_Classe"."Classe_ID" = ${class_id}`;
         const response = await client.query(query);    
         const {rows} = response;
         return rows;
@@ -80,7 +80,7 @@ const getProfFromClass = async (class_id) => {
     const client = await pool.connect();
 
     try {
-        const query = `SELECT "Prof_ID" FROM public."Classe" WHERE "Classe_ID" = ${class_id}`;
+        const query = `SELECT "Prof_ID" FROM public."Classe" WHERE "ID" = ${class_id}`;
         const response = await client.query(query);
         const {rows} = response;
         if (rows.length === 0) {return -1};
@@ -92,11 +92,26 @@ const getProfFromClass = async (class_id) => {
     }
 }
 
+const getStudentFromClass = async (student_id, class_id) => {
+    const client = await pool.connect();
+
+    try {
+        const query = `SELECT "Etudiant"."ID", "Etudiant"."Prenom", "Etudiant"."Nom", "Etudiant_Classe"."Note", "Etudiant_Classe"."Remarque_du_prof"  FROM public."Etudiant" INNER JOIN public."Etudiant_Classe" ON "Etudiant"."ID" = "Etudiant_Classe"."Etudiant_ID" WHERE "Etudiant_Classe"."Classe_ID" = ${class_id} AND "Etudiant"."ID" = ${student_id}`;
+        const response = await client.query(query);    
+        const {rows} = response;
+        return rows;
+    } catch (err) {
+        console.log(err);
+    } finally {
+        client.release();
+    }
+}
+
 const setGrade = async (etudiant_id, classe_id, note, remarque) => {
     const client = await pool.connect();
 
     try {
-        const query = `UPDATE public."Etudiant_Classe" SET "Note" = ${note}, "Remarque du prof" = '${remarque}' WHERE "Etudiant_ID" = ${etudiant_id} AND "Classe_ID" = ${classe_id}`;
+        const query = `UPDATE public."Etudiant_Classe" SET "Note" = ${note}, "Remarque_du_prof" = '${remarque}' WHERE "Etudiant_ID" = ${etudiant_id} AND "Classe_ID" = ${classe_id}`;
         const response = await client.query(query);
         return response;
     } catch (err) {
@@ -121,4 +136,4 @@ const studentInClass = async (etudiant_id, class_id) => {
     }
 }
 
-module.exports = {getMyProfData, getProfCredentials, updateMyProfData, getMyProfClasses, getStudentsFromClass, getProfFromClass, setGrade, studentInClass}
+module.exports = {getMyProfData, getProfCredentials, updateMyProfData, getMyProfClasses, getStudentsFromClass, getProfFromClass, setGrade, studentInClass, getStudentFromClass}

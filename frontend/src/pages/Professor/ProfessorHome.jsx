@@ -1,17 +1,19 @@
-import { Link } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 function ProfessorHome() {
-    
+
+    const navigate = useNavigate();
+
     return (
         <>
-            <h1>This is the Professor home page</h1>
+            <h1>Page d'accueil</h1>
             <nav>
                 <ul>
                     <li>
-                        <Link to='/professor/profile'>Profile</Link>
+                        <Link to='/professor/profile'>Mon Profil</Link>
                     </li>
                     <li>
-                        <Link to='/professor/classes'>Classes</Link>
+                        <Link to='/professor/classes'>Mes Classes</Link>
                     </li>
                 </ul>
             </nav>
