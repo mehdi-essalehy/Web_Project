@@ -29,7 +29,7 @@ function Login() {
         role,
       }
 
-      fetch('http://localhost:3500/login', {
+      fetch(`http://${process.env.REACT_APP_DOMAIN}:${process.env.REACT_APP_PORT}/login`, {
         method: 'POST',
         headers: {
           'content-type': 'application/json',

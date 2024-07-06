@@ -12,7 +12,7 @@ function StudentUpdateClass() {
     const [data, setData] = useState({data: []})
 
     useEffect(() => {
-        fetch('http://localhost:3500/etudiants/myClass/' + classID, {
+        fetch(`http://${process.env.REACT_APP_DOMAIN}:${process.env.REACT_APP_PORT}/etudiants/myClass/${classID}`, {
             method: 'GET',
             headers: {
               'content-type': 'application/json',
@@ -32,7 +32,7 @@ function StudentUpdateClass() {
         e.preventDefault();
 
         let commentaire = document.getElementById('commentaire').value;
-        fetch('http://localhost:3500/etudiants/myClasses/' + classID, {
+        fetch(`http://${process.env.REACT_APP_DOMAIN}:${process.env.REACT_APP_PORT}/etudiants/myClasses/${classID}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',

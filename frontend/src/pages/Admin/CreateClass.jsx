@@ -12,7 +12,7 @@ function CreateClass() {
     const [subjectsToDisplay, setSubjectsToDisplay] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:3500/admins/getAllProfs', {
+        fetch(`http://${process.env.REACT_APP_DOMAIN}:${process.env.REACT_APP_PORT}/admins/getAllProfs`, {
             method: 'GET',
             headers: {
               'content-type': 'application/json',
@@ -24,7 +24,7 @@ function CreateClass() {
             setProfs(data.data);
         })
         .catch((error) => console.log(error));
-        fetch('http://localhost:3500/admins/getAllSubjects', {
+        fetch(`http://${process.env.REACT_APP_DOMAIN}:${process.env.REACT_APP_PORT}/admins/getAllSubjects`, {
             method: 'GET',
             headers: {
               'content-type': 'application/json',
@@ -59,7 +59,7 @@ function CreateClass() {
         let subject_id = document.getElementById('subjects').value;
         let prof_id = document.getElementById('profs').value;
         let annee = document.getElementById('annee').value;
-        fetch('http://localhost:3500/admins/createNewClass', {
+        fetch(`http://${process.env.REACT_APP_DOMAIN}:${process.env.REACT_APP_PORT}/admins/createNewClass`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

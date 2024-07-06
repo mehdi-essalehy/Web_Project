@@ -12,7 +12,7 @@ function CreateAdmin() {
 
         let Nom = document.getElementById('Nom').value;
         let Password = document.getElementById('Password').value;
-        fetch('http://localhost:3500/admins/createNewAdmin', {
+        fetch(`http://${process.env.REACT_APP_DOMAIN}:${process.env.REACT_APP_PORT}/admins/createNewAdmin`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

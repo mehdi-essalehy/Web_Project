@@ -7,7 +7,7 @@ function ProfessorData() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch('http://localhost:3500/professeurs/myData', {
+        fetch(`http://${process.env.REACT_APP_DOMAIN}:${process.env.REACT_APP_PORT}/professeurs/myData`, {
             method: 'GET',
             headers: {
               'content-type': 'application/json',

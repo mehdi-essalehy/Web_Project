@@ -9,7 +9,7 @@ function TroncCommun() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch('http://localhost:3500/etudiants/Tronc-Commun', {
+        fetch(`http://${process.env.REACT_APP_DOMAIN}:${process.env.REACT_APP_PORT}/etudiants/Tronc-Commun`, {
             method: 'GET',
             headers: {
               'content-type': 'application/json',
@@ -22,7 +22,7 @@ function TroncCommun() {
         })
         .catch((error) => console.log(error));
 
-        fetch('http://localhost:3500/etudiants/getEtudGrade1', {
+        fetch(`http://${process.env.REACT_APP_DOMAIN}:${process.env.REACT_APP_PORT}/etudiants/getEtudGrade1`, {
             method: 'GET',
             headers: {
               'content-type': 'application/json',

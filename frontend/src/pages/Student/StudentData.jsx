@@ -12,7 +12,7 @@ function StudentData() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch('http://localhost:3500/etudiants/myData', {
+        fetch(`http://${process.env.REACT_APP_DOMAIN}:${process.env.REACT_APP_PORT}/etudiants/myData`, {
             method: 'GET',
             headers: {
               'content-type': 'application/json',
@@ -30,7 +30,7 @@ function StudentData() {
     const {ID, Prenom, Nom, Date_de_naissance, Niveau, Orientation_Tronc_Commun, Orientation_Bac_1, Orientation_Bac_2, Date_enregistrement}  = data;
 
     if (Niveau >= 1) {
-            fetch('http://localhost:3500/etudiants/getOrientationName/' + Orientation_Tronc_Commun, {
+            fetch(`http://${process.env.REACT_APP_DOMAIN}:${process.env.REACT_APP_PORT}/etudiants/getOrientationName/${Orientation_Tronc_Commun}`, {
                 method: 'GET',
                 headers: {
                   'content-type': 'application/json',
@@ -45,7 +45,7 @@ function StudentData() {
             .catch((error) => console.log(error));
     }
     if (Niveau >= 2) {
-            fetch('http://localhost:3500/etudiants/getOrientationName/' + Orientation_Bac_1, {
+            fetch(`http://${process.env.REACT_APP_DOMAIN}:${process.env.REACT_APP_PORT}/etudiants/getOrientationName/${Orientation_Bac_1}`, {
                 method: 'GET',
                 headers: {
                   'content-type': 'application/json',
@@ -60,7 +60,7 @@ function StudentData() {
             .catch((error) => console.log(error));
     }
     if (Niveau === 3) {
-            fetch('http://localhost:3500/etudiants/getOrientationName/' + Orientation_Bac_2, {
+            fetch(`http://${process.env.REACT_APP_DOMAIN}:${process.env.REACT_APP_PORT}/etudiants/getOrientationName/${Orientation_Bac_2}`, {
                 method: 'GET',
                 headers: {
                   'content-type': 'application/json',

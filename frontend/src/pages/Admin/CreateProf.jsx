@@ -13,7 +13,7 @@ function CreateProf() {
         let Nom = document.getElementById('Nom').value;
         let Prenom = document.getElementById('Prenom').value;
         let Password = document.getElementById('Password').value;
-        fetch('http://localhost:3500/admins/createNewProf', {
+        fetch(`http://${process.env.REACT_APP_DOMAIN}:${process.env.REACT_APP_PORT}/admins/createNewProf`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

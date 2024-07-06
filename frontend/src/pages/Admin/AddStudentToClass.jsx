@@ -11,7 +11,7 @@ function AddStudentToClass() {
     const [classes, setClasses] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:3500/admins/getAllStudents', {
+        fetch(`http://${process.env.REACT_APP_DOMAIN}:${process.env.REACT_APP_PORT}/admins/getAllStudents`, {
             method: 'GET',
             headers: {
               'content-type': 'application/json',
@@ -38,7 +38,7 @@ function AddStudentToClass() {
 
         let student_id = document.getElementById('etudiants').value;
         let niveau = students.filter((student) => (String(student.ID) === student_id))[0].Niveau
-        fetch('http://localhost:3500/admins/getClassesFromStudent/' + student_id + '/' + niveau, {
+        fetch(`http://${process.env.REACT_APP_DOMAIN}:${process.env.REACT_APP_PORT}/admins/getClassesFromStudent/${student_id}/${niveau}`, {
             method: 'GET',
             headers: {
               'content-type': 'application/json',
@@ -57,7 +57,7 @@ function AddStudentToClass() {
 
         let student_id = document.getElementById('etudiants').value
         let class_id = document.getElementById('classes').value
-        fetch('http://localhost:3500/admins/addStudentToClass', {
+        fetch(`http://${process.env.REACT_APP_DOMAIN}:${process.env.REACT_APP_PORT}/admins/addStudentToClass`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

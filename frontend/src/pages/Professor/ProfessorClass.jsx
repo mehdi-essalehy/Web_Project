@@ -10,7 +10,7 @@ function ProfessorClass() {
     const [data, setData] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:3500/professeurs/myClasses/' + classID, {
+        fetch(`http://${process.env.REACT_APP_DOMAIN}:${process.env.REACT_APP_PORT}/professeurs/myClasses/${classID}`, {
             method: 'GET',
             headers: {
               'content-type': 'application/json',

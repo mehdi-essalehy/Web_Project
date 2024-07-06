@@ -16,7 +16,7 @@ function StudentEnroll() {
 
         const getMyLevel = async () => {
             try {
-                const response = await fetch('http://localhost:3500/etudiants/getMyLevel', {
+                const response = await fetch(`http://${process.env.REACT_APP_DOMAIN}:${process.env.REACT_APP_PORT}/etudiants/getMyLevel`, {
                     method: 'GET',
                     headers: {
                       'content-type': 'application/json',
@@ -32,7 +32,7 @@ function StudentEnroll() {
 
         const getCurrentOrientation = async (niveau) => {
             try {
-                const response = await fetch('http://localhost:3500/etudiants/getCurrentOrientation/' + niveau, {
+                const response = await fetch(`http://${process.env.REACT_APP_DOMAIN}:${process.env.REACT_APP_PORT}/etudiants/getCurrentOrientation/${niveau}`, {
                     method: 'GET',
                     headers: {
                       'content-type': 'application/json',
@@ -48,7 +48,7 @@ function StudentEnroll() {
 
         const getPossibleOrientations = async (currentOrientation) => {
             try {
-                const response = await fetch('http://localhost:3500/etudiants/getPossibleOrientations/' + currentOrientation, {
+                const response = await fetch(`http://${process.env.REACT_APP_DOMAIN}:${process.env.REACT_APP_PORT}/etudiants/getPossibleOrientations/${currentOrientation}`, {
                     method: 'GET',
                     headers: {
                       'content-type': 'application/json',
@@ -84,7 +84,7 @@ function StudentEnroll() {
         e.preventDefault();
 
         let orientation_id = document.getElementById('orientations').value
-        fetch('http://localhost:3500/etudiants/enrollInNextOrientation', {
+        fetch(`http://${process.env.REACT_APP_DOMAIN}:${process.env.REACT_APP_PORT}/etudiants/enrollInNextOrientation`, {
             method: 'put',
             headers: {
                 'content-type': 'application/json',

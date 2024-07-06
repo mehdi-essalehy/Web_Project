@@ -9,7 +9,7 @@ function Bac1() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch('http://localhost:3500/etudiants/Bac-1', {
+        fetch(`http://${process.env.REACT_APP_DOMAIN}:${process.env.REACT_APP_PORT}/etudiants/Bac-1`, {
             method: 'GET',
             headers: {
               'content-type': 'application/json',
@@ -22,7 +22,7 @@ function Bac1() {
         })
         .catch((error) => console.log(error));
 
-        fetch('http://localhost:3500/etudiants/getEtudGrade2', {
+        fetch(`http://${process.env.REACT_APP_DOMAIN}:${process.env.REACT_APP_PORT}/etudiants/getEtudGrade2`, {
             method: 'GET',
             headers: {
               'content-type': 'application/json',

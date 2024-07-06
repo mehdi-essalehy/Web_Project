@@ -10,7 +10,7 @@ function CreateStudent() {
     const [orientations, setOrientations] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:3500/admins/getOrienatationsTroncCommun', {
+        fetch('http://${process.env.REACT_APP_DOMAIN}:${process.env.REACT_APP_PORT}/admins/getOrienatationsTroncCommun', {
             method: 'GET',
             headers: {
                 'content-type': 'application/json',
@@ -37,7 +37,7 @@ function CreateStudent() {
         let Date_de_naissance = document.getElementById('date_de_naissance').value;
         let Orientation_id = document.getElementById('orientations').value;
         let Password = document.getElementById('Password').value;
-        fetch('http://localhost:3500/admins/createNewStudent', {
+        fetch(`http://${process.env.REACT_APP_DOMAIN}:${process.env.REACT_APP_PORT}/admins/createNewStudent`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

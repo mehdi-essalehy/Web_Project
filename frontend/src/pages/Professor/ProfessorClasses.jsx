@@ -8,7 +8,7 @@ function ProfessorClasses() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch('http://localhost:3500/professeurs/myClasses', {
+        fetch(`http://${process.env.REACT_APP_DOMAIN}:${process.env.REACT_APP_PORT}/professeurs/myClasses`, {
             method: 'GET',
             headers: {
               'content-type': 'application/json',
